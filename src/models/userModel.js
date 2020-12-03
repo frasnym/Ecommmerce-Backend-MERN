@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 const userSchema = new mongoose.Schema(
 	{
@@ -96,22 +97,29 @@ const userSchema = new mongoose.Schema(
 	}
 );
 
-/**
- * Hashing User Password
- */
-userSchema.virtual("password").set(async (password) => {
-	const user = this;
-	user.password = await bcrypt.hash(password, 8);
-});
+userSchema.statics = {
+	/**
+	 * To lookup user data by it's email & password, preferable for login
+	 * @param {String} email_address : User's email from request body
+	 * @param {String} password : User's password from request body
+	 */
+	findbyCredentials: async (email_address, password) => {
+		// const user = await User.findOne({ email_address:email_address })
+		const user = await User.findOne({
+			email_address,
+			account_status: "ACTIVE",
+		}); // Find user with email_address and account_status
 
-/**
- * User methods
- */
-userSchema.methods = {
-	authenticate: async (password) => {
-		// Check password with hash
-		const user = this;
-		return await bcrypt.compare(password, user.password);
+		if (!user) {
+			throw new Error("ERRORMIDDLEWARE.LOGIN.");
+		}
+
+		const isMatch = await bcrypt.compare(password, user.password); // Check password with hash
+		if (!isMatch) {
+			throw new Error("ERRORMIDDLEWARE.LOGIN.");
+		}
+
+		return user;
 	},
 };
 
