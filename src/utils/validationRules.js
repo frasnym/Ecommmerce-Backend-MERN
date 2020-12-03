@@ -15,6 +15,14 @@ const signUp = [
 	body("password").notEmpty().withMessage("ParameterValueRequired"),
 ];
 
+const signIn = [
+	header("user-agent").notEmpty().withMessage("ParameterValueRequired"),
+	body("email_address").isEmail().withMessage("InvalidEmailAddressFormat"),
+	body("password").notEmpty().withMessage("ParameterValueRequired"),
+	body("ip_address").isIP().withMessage("InvalidIPAddressFormat"),
+];
+
 module.exports = {
 	signUp,
+	signIn,
 };

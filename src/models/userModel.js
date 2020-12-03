@@ -167,6 +167,49 @@ userSchema.statics = {
 	},
 };
 
+userSchema.methods = {
+	/**
+	 ** Hide credentials data on API response
+	 */
+	toJSON: function () {
+		const user = this;
+		const userObject = user.toObject();
+
+		delete userObject.password;
+		delete userObject.tokens;
+		delete userObject.__v;
+
+		return userObject;
+	},
+	/**
+	 * Generate token as a sign that user is logged in
+	 * @param {String} user_agent : User's agent from request headers
+	 * @param {String} ip_address : User's ip_address from request body
+	 */
+	generateAuthToken: async function (user_agent, ip_address) {
+		const user = this;
+		const token = jwt.sign(
+			{ _id: user._id.toString() },
+			process.env.JWT_SECRET
+		);
+
+		const findIndex = user.tokens.findIndex((token_doc) => {
+			return token_doc.user_agent === user_agent;
+		});
+
+		if (findIndex === -1) {
+			// Index not found = create new
+			user.tokens = user.tokens.concat({ token, user_agent, ip_address });
+		} else {
+			// Index found = update it
+			user.tokens[findIndex] = { token, user_agent, ip_address };
+		}
+		await user.save();
+
+		return token;
+	},
+};
+
 const User = mongoose.model("User", userSchema);
 
 module.exports = User;

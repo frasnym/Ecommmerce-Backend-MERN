@@ -30,4 +30,26 @@ const signUp = async (req, res) => {
 	}
 };
 
-module.exports = { signUp };
+const signIn = async (req, res) => {
+	try {
+		const user = await UserModel.findbyCredentials(
+			req.body.email_address,
+			req.body.password
+		);
+		const token = await user.generateAuthToken(
+			req.get("User-Agent"),
+			req.body.ip_address
+		);
+
+		res.respMessage.success = true;
+		res.respMessage.message = req.t("ProcessSuccess");
+		res.respMessage.data = user;
+		res.respMessage.token = token;
+		return res.status(200).send(res.respMessage);
+	} catch (e) {
+		res.respMessage = errorManipulator(e, req, res.respMessage);
+		return res.status(404).send(res.respMessage);
+	}
+};
+
+module.exports = { signUp, signIn };
