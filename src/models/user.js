@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
+const bcrypt = require("bcrypt");
 
 const userSchema = new mongoose.Schema(
 	{
@@ -94,6 +95,25 @@ const userSchema = new mongoose.Schema(
 		timestamps: true,
 	}
 );
+
+/**
+ * Hashing User Password
+ */
+userSchema.virtual("password").set(async (password) => {
+	const user = this;
+	user.password = await bcrypt.hash(password, 8);
+});
+
+/**
+ * User methods
+ */
+userSchema.methods = {
+	authenticate: async (password) => {
+		// Check password with hash
+		const user = this;
+		return await bcrypt.compare(password, user.password);
+	},
+};
 
 const User = mongoose.model("User", userSchema);
 
