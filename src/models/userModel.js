@@ -97,6 +97,29 @@ const userSchema = new mongoose.Schema(
 	}
 );
 
+userSchema.pre("save", async function (next) {
+	const user = this;
+
+	if (user.isModified("phone_number")) {
+		// Check if column is modified
+		user.phone_number = `(${user.phone_number.substr(
+			0,
+			2
+		)})${user.phone_number.substr(2)}`; // Insert brackets "()" on phone code
+		user.phone_number_verify_status = "UNVERIFIED"; // change phone_number_verify_status every updating phone_number
+	}
+
+	if (user.isModified("email_address")) {
+		user.email_address_verify_status = "UNVERIFIED"; // change email_address_verify_status every updating email_address
+	}
+
+	if (user.isModified("password")) {
+		user.password = await bcrypt.hash(user.password, 8);
+	}
+
+	next(); // Done with the function
+});
+
 userSchema.statics = {
 	/**
 	 * To lookup user data by it's email & password, preferable for login
