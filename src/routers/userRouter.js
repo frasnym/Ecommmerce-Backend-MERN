@@ -1,14 +1,12 @@
 const express = require("express");
 
-const User = require("../models/userModel");
+const v = require("../utils/validationRules");
+const { inputBodyValidator } = require("../middlewares/api");
+const UserController = require("../controllers/userController");
 
 const router = new express.Router();
 
-router.post("/signup", (req, res) => {
-	res.respMessage.success = true;
-	res.respMessage.message = req.t("ProcessSuccess");
-	return res.status(201).send(res.respMessage);
-});
+router.post("/signup", [v.signUp, inputBodyValidator], UserController.signUp);
 
 router.post("/signin", async (req, res) => {
 	return res.status(200).send(res.respMessage);

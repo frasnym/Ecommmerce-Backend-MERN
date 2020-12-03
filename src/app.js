@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 require("./db/mongoose");
 
-const { i18next, i18nextMiddleware } = require("./translation");
+const { i18next, i18nextMiddleware } = require("./utils/translation");
 const { setResponseTemplate } = require("./middlewares/api");
 const mainRouter = require("./routers/main");
 const userRouter = require("./routers/userRouter");

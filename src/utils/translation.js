@@ -15,7 +15,8 @@ i18next
 			 * Since we're only going to serve up a few strings, we're just going to use one namespace here.
 			 */
 			// loadPath: path.join(__dirname, '../resources/locales/{{lng}}/{{ns}}.json')
-			loadPath: __dirname + "/../resources/locales/{{lng}}/{{ns}}.json",
+			loadPath:
+				__dirname + "/../../resources/locales/{{lng}}/{{ns}}.json",
 		},
 		fallbackLng: "en", // fallback defines your default language that will be used if there's no translated string for a certain message
 		preload: ["en", "id"], // The preload parameter takes an array of languages that i18next will load at time of initialization
