@@ -178,6 +178,8 @@ userSchema.methods = {
 		delete userObject.password;
 		delete userObject.tokens;
 		delete userObject.__v;
+		delete userObject.createdAt;
+		delete userObject.updatedAt;
 
 		return userObject;
 	},

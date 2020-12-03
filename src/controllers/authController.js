@@ -41,10 +41,22 @@ const signIn = async (req, res) => {
 			req.body.ip_address
 		);
 
+		const data = {
+			_id: user._id,
+			full_name: user.full_name,
+			current_address: user.current_address,
+			email_address: user.email_address,
+			phone_number: user.phone_number,
+			account_status: user.account_status,
+			email_address_verify_status: user.email_address_verify_status,
+			phone_number_verify_status: user.phone_number_verify_status,
+			role: user.role,
+		};
+
+		res.respMessage.data = data;
+		res.respMessage.token = token;
 		res.respMessage.success = true;
 		res.respMessage.message = req.t("ProcessSuccess");
-		res.respMessage.data = user;
-		res.respMessage.token = token;
 		return res.status(200).send(res.respMessage);
 	} catch (e) {
 		res.respMessage = errorManipulator(e, req, res.respMessage);
