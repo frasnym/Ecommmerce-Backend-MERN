@@ -5,9 +5,9 @@ const User = require("../models/userModel");
 const router = new express.Router();
 
 router.post("/signup", (req, res) => {
-	res.status(200).json({
-		message: req.body,
-	});
+	res.respMessage.success = true;
+	res.respMessage.message = req.t("ProcessSuccess");
+	return res.status(201).send(res.respMessage);
 });
 
 router.post("/signin", async (req, res) => {

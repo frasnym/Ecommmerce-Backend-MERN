@@ -1,0 +1,23 @@
+{
+    "greeting": "halo dunia!",
+    "ParameterValueRequired": "Nilai parameter diperlukan",
+    "DataRegisteredPleaseProvideAnotherValue": "Data sudah terdaftar, mohon menggunakand data lain: ",
+    "StatusValueNotIdentified": "Nilai status tidak teridentifikasi",
+    "InvalidEmailAddressFormat": "Format alamat surat elektrik salah",
+    "InvalidPhoneNumberFormat": "Format nomor telepon salah",
+    "InvalidIPAddressFormat": "Format alamat IP salah",
+    "UnableToLogin": "Login gagal",
+    "PleaseAuthenticate": "Mohon untuk melakukan otentikasi",
+    "InvalidOperation": "Operasi tidak valid",
+    "AccountInactive": "Akun tidak aktif",
+    "ProcessSuccess": "Proses berhasil",
+    "ProcessCannotBeDone": "Proses tidak dapat dilakukan",
+    "AccountEmailAddressVerified": "Alamat surat elektrik sudah diverifikasi",
+    "RequestQueueProgress5Minutes": "Permintaan sedang dalam proses, coba lagi dalam 5 menit",
+    "full_name": "nama lengkap",
+    "current_address": "alamat rumah",
+    "email_address": "alamat surat elektrik",
+    "phone_number": "nomor telepon",
+    "password": "kata sandi",
+    "ip_address": "alamat IP"
+}
