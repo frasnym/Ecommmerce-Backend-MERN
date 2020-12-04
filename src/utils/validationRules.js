@@ -12,7 +12,9 @@ const signUp = [
 		}
 		return true; // Indicates the success of this synchronous custom validator
 	}),
-	body("password").notEmpty().withMessage("ParameterValueRequired"),
+	body("password")
+		.isLength({ min: 6 })
+		.withMessage("ValueMustBeMinimum6Char"),
 ];
 
 const signIn = [
