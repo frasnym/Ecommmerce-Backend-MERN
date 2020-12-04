@@ -9,6 +9,7 @@
 	"ValueMustBeMinimum6Char": "Nilai minimal harus berjumlah 6 karakter",
 	"UnableToLogin": "Login gagal",
 	"PleaseAuthenticate": "Mohon untuk melakukan otentikasi",
+	"AccessForbidden": "Akses tidak dapat dilakukan",
 	"InvalidOperation": "Operasi tidak valid",
 	"AccountInactive": "Akun tidak aktif",
 	"ProcessSuccess": "Proses berhasil",
