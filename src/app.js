@@ -12,6 +12,6 @@ app.use(express.json()); // body raw JSON
 app.use(i18nextMiddleware.handle(i18next)); // we tell Express to use i18next's middleware
 app.use("/users/auth", setResponseTemplate, authRouter);
 app.use("/users", setResponseTemplate, userRouter);
-app.use("/category", setResponseTemplate, categoryRouter);
+app.use("/categories", setResponseTemplate, categoryRouter);
 
 module.exports = app;

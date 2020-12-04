@@ -29,4 +29,19 @@ const createCategory = async (req, res) => {
 	}
 };
 
-module.exports = { createCategory };
+const readCategories = async (req, res) => {
+	try {
+		const categories = await categoryModel.find({});
+
+		res.respMessage.data = categories;
+
+		res.respMessage.success = true;
+		res.respMessage.message = "Success";
+		res.status(200).send(res.respMessage);
+	} catch (e) {
+		res.respMessage = errorManipulator(e, req, res.respMessage);
+		res.status(404).send(res.respMessage);
+	}
+};
+
+module.exports = { createCategory, readCategories };
