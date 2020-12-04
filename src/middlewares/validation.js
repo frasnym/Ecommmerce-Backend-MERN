@@ -29,6 +29,9 @@ const rules = {
 		body("password").notEmpty().withMessage("ParameterValueRequired"),
 		body("ip_address").isIP().withMessage("InvalidIPAddressFormat"),
 	],
+	createCategory: [
+		body("name").notEmpty().withMessage("ParameterValueRequired"),
+	],
 };
 
 /**

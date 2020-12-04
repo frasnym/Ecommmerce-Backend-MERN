@@ -21,7 +21,7 @@ const authCheckUser = async (req, res, next) => {
 			throw new Error("PleaseAuthenticate");
 		}
 
-		if (user.account_status != "ACTIVE") {
+		if (user.account_status !== "ACTIVE") {
 			throw new Error("AccountInactive");
 		}
 
@@ -36,7 +36,7 @@ const authCheckUser = async (req, res, next) => {
 
 const authCheckAdmin = async (req, res, next) => {
 	try {
-		if (req.user.role != "ADMIN") {
+		if (req.user.role !== "ADMIN") {
 			throw new Error("AccessForbidden");
 		}
 		next();

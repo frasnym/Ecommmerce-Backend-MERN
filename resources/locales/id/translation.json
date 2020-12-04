@@ -21,5 +21,6 @@
 	"email_address": "alamat surat elektrik",
 	"phone_number": "nomor telepon",
 	"password": "kata sandi",
-	"ip_address": "alamat IP"
+	"ip_address": "alamat IP",
+	"name": "nama"
 }
