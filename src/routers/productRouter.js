@@ -9,7 +9,7 @@ const router = new express.Router();
 
 router
 	.route("/")
-	// .get(productController.readCategories)
+	.get(productController.readProducts)
 	.post(
 		authCheckUser,
 		authCheckAdmin,

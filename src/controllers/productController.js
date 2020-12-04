@@ -45,4 +45,19 @@ const createProduct = async (req, res) => {
 	}
 };
 
-module.exports = { createProduct };
+const readProducts = async (req, res) => {
+	try {
+		const products = await productModel.find({});
+
+		res.respMessage.data = products;
+
+		res.respMessage.success = true;
+		res.respMessage.message = "Success";
+		res.status(200).send(res.respMessage);
+	} catch (e) {
+		res.respMessage = errorManipulator(e, req, res.respMessage);
+		res.status(404).send(res.respMessage);
+	}
+};
+
+module.exports = { createProduct, readProducts };
