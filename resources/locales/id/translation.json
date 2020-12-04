@@ -1,7 +1,7 @@
 {
 	"greeting": "halo dunia!",
 	"ParameterValueRequired": "Nilai parameter diperlukan",
-	"DataRegisteredPleaseProvideAnotherValue": "Data sudah terdaftar, mohon menggunakand data lain: ",
+	"DataRegisteredPleaseProvideAnotherValue": "Data sudah terdaftar, mohon menggunakan data lain: ",
 	"StatusValueNotIdentified": "Nilai status tidak teridentifikasi",
 	"InvalidEmailAddressFormat": "Format alamat surat elektrik salah",
 	"InvalidPhoneNumberFormat": "Format nomor telepon salah",
