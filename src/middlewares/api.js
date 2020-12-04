@@ -21,7 +21,7 @@ const setResponseTemplate = async (req, res, next) => {
  * @param {Object} respMessage : Response message template
  */
 const errorManipulator = (error, req, respMessage) => {
-	console.log(error);
+	// console.log(error);
 	if (error.message.startsWith("ERRORMIDDLEWARE")) {
 		respMessage.message = error.message.replace("ERRORMIDDLEWARE.", "");
 		if (respMessage.message.startsWith("DUPLICATE")) {
