@@ -1,6 +1,6 @@
 const express = require("express");
 
-const { authCheckAdmin, authCheckUser } = require("../middlewares/auth");
+const { authCheckAdmin, authCheck } = require("../middlewares/auth");
 const { upload, handleMulterErrors } = require("../middlewares/upload");
 const { rules, inputBodyValidator } = require("../middlewares/validation");
 const productController = require("../controllers/productController");
@@ -11,7 +11,7 @@ router
 	.route("/")
 	.get(productController.readProducts)
 	.post(
-		authCheckUser,
+		authCheck,
 		authCheckAdmin,
 		upload.array("images"),
 		[rules.createProduct, inputBodyValidator],

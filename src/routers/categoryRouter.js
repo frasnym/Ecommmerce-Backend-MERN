@@ -1,6 +1,6 @@
 const express = require("express");
 
-const { authCheckAdmin, authCheckUser } = require("../middlewares/auth");
+const { authCheckAdmin, authCheck } = require("../middlewares/auth");
 const { rules, inputBodyValidator } = require("../middlewares/validation");
 const categoryController = require("../controllers/categoryController");
 
@@ -10,7 +10,7 @@ router
 	.route("/")
 	.get(categoryController.readCategories)
 	.post(
-		authCheckUser,
+		authCheck,
 		authCheckAdmin,
 		[rules.createCategory, inputBodyValidator],
 		categoryController.createCategory

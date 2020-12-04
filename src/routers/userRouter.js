@@ -1,10 +1,10 @@
 const express = require("express");
 
-const { authCheckUser } = require("../middlewares/auth");
+const { authCheck } = require("../middlewares/auth");
 const userController = require("../controllers/userController");
 
 const router = new express.Router();
 
-router.get("/", authCheckUser, userController.getUser);
+router.get("/", authCheck, userController.getUser);
 
 module.exports = router;

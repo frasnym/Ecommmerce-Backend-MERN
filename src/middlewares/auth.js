@@ -2,7 +2,7 @@ var jwt = require("jsonwebtoken");
 
 const UserModel = require("../models/userModel");
 
-const authCheckUser = async (req, res, next) => {
+const authCheck = async (req, res, next) => {
 	try {
 		if (!req.header("Authorization")) {
 			throw new Error("PleaseAuthenticate");
@@ -46,4 +46,4 @@ const authCheckAdmin = async (req, res, next) => {
 	}
 };
 
-module.exports = { authCheckUser, authCheckAdmin };
+module.exports = { authCheck, authCheckAdmin };
