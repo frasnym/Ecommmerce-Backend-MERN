@@ -3,6 +3,33 @@ const slugify = require("slugify");
 const categoryModel = require("../models/categoryModel");
 const { errorManipulator } = require("../middlewares/api");
 
+/**
+ * Populate Categories Children
+ * @param {Object} categories : category object from db
+ * @param {String} parentId : ObjectId, if available
+ */
+function populateCategories(categories, parentId = null) {
+	const categoryList = [];
+	let category;
+
+	if (parentId == null) {
+		category = categories.filter((cat) => cat.parentId == undefined);
+	} else {
+		category = categories.filter((cat) => cat.parentId == parentId);
+	}
+
+	for (let cate of category) {
+		categoryList.push({
+			_id: cate._id,
+			name: cate.name,
+			slug: cate.slug,
+			children: populateCategories(categories, cate._id),
+		});
+	}
+
+	return categoryList;
+}
+
 const createCategory = async (req, res) => {
 	const categoryObj = {
 		name: req.body.name,
@@ -33,7 +60,7 @@ const readCategories = async (req, res) => {
 	try {
 		const categories = await categoryModel.find({});
 
-		res.respMessage.data = categories;
+		res.respMessage.data = populateCategories(categories);
 
 		res.respMessage.success = true;
 		res.respMessage.message = "Success";
