@@ -32,6 +32,13 @@ const rules = {
 	createCategory: [
 		body("name").notEmpty().withMessage("ParameterValueRequired"),
 	],
+	createProduct: [
+		body("name").notEmpty().withMessage("ParameterValueRequired"),
+		body("price").notEmpty().withMessage("ParameterValueRequired"),
+		body("quantity").notEmpty().withMessage("ParameterValueRequired"),
+		body("description").notEmpty().withMessage("ParameterValueRequired"),
+		body("category").notEmpty().withMessage("ParameterValueRequired"),
+	],
 };
 
 /**

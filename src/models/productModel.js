@@ -18,6 +18,10 @@ const productSchema = new mongoose.Schema(
 			type: Number,
 			required: [true, "ParameterValueRequired"],
 		},
+		quantity: {
+			type: Number,
+			required: [true, "ParameterValueRequired"],
+		},
 		description: {
 			type: String,
 			required: [true, "ParameterValueRequired"],
@@ -42,10 +46,12 @@ const productSchema = new mongoose.Schema(
 		category: {
 			type: mongoose.Schema.Types.ObjectId,
 			ref: "Category",
+			required: [true, "ParameterValueRequired"],
 		},
 		createdBy: {
 			type: mongoose.Schema.Types.ObjectId,
 			ref: "User",
+			required: [true, "ParameterValueRequired"],
 		},
 	},
 	{

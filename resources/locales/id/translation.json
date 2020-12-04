@@ -6,6 +6,7 @@
 	"InvalidEmailAddressFormat": "Format alamat surat elektrik salah",
 	"InvalidPhoneNumberFormat": "Format nomor telepon salah",
 	"InvalidIPAddressFormat": "Format alamat IP salah",
+	"InvalidImageFile": "Format berkas harus berupa gambar",
 	"ValueMustBeMinimum6Char": "Nilai minimal harus berjumlah 6 karakter",
 	"UnableToLogin": "Login gagal",
 	"PleaseAuthenticate": "Mohon untuk melakukan otentikasi",
