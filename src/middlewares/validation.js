@@ -39,6 +39,9 @@ const rules = {
 		body("description").notEmpty().withMessage("ParameterValueRequired"),
 		body("category").notEmpty().withMessage("ParameterValueRequired"),
 	],
+	addToCart: [
+		body("product").notEmpty().withMessage("ParameterValueRequired"),
+	],
 };
 
 /**

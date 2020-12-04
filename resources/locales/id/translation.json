@@ -1,5 +1,6 @@
 {
 	"greeting": "halo dunia!",
+	"ProductNotFound": "Produk tidak ditemukan",
 	"ParameterValueRequired": "Nilai parameter diperlukan",
 	"DataRegisteredPleaseProvideAnotherValue": "Data sudah terdaftar, mohon menggunakan data lain: ",
 	"StatusValueNotIdentified": "Nilai status tidak teridentifikasi",
@@ -7,6 +8,7 @@
 	"InvalidPhoneNumberFormat": "Format nomor telepon salah",
 	"InvalidIPAddressFormat": "Format alamat IP salah",
 	"InvalidImageFile": "Format berkas harus berupa gambar",
+	"FileImageTooLarge": "Ukuran berkas terlalu besar",
 	"ValueMustBeMinimum6Char": "Nilai minimal harus berjumlah 6 karakter",
 	"UnableToLogin": "Login gagal",
 	"PleaseAuthenticate": "Mohon untuk melakukan otentikasi",
@@ -23,5 +25,9 @@
 	"phone_number": "nomor telepon",
 	"password": "kata sandi",
 	"ip_address": "alamat IP",
-	"name": "nama"
+	"name": "nama",
+	"price": "harga",
+	"quantity": "kuantitas",
+	"description": "deskirpsi",
+	"product": "produk"
 }

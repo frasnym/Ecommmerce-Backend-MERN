@@ -46,4 +46,16 @@ const authCheckAdmin = async (req, res, next) => {
 	}
 };
 
-module.exports = { authCheck, authCheckAdmin };
+const authCheckUser = async (req, res, next) => {
+	try {
+		if (req.user.role !== "USER") {
+			throw new Error("AccessForbidden");
+		}
+		next();
+	} catch (e) {
+		res.respMessage.message = req.t(e.message);
+		return res.status(401).send(res.respMessage);
+	}
+};
+
+module.exports = { authCheck, authCheckAdmin, authCheckUser };

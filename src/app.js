@@ -7,6 +7,7 @@ const authRouter = require("./routers/authRouter");
 const userRouter = require("./routers/userRouter");
 const categoryRouter = require("./routers/categoryRouter");
 const productRouter = require("./routers/productRouter");
+const cartRouter = require("./routers/cartRouter");
 
 const app = express();
 app.use(express.json()); // body raw JSON
@@ -15,5 +16,6 @@ app.use("/users/auth", setResponseTemplate, authRouter);
 app.use("/users", setResponseTemplate, userRouter);
 app.use("/categories", setResponseTemplate, categoryRouter);
 app.use("/products", setResponseTemplate, productRouter);
+app.use("/carts", setResponseTemplate, cartRouter);
 
 module.exports = app;
