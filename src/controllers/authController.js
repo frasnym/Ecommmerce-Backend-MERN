@@ -64,4 +64,20 @@ const signIn = async (req, res) => {
 	}
 };
 
-module.exports = { signUp, signIn };
+const signOut = async (req, res) => {
+	try {
+		req.user.tokens = req.user.tokens.filter((token) => {
+			return token.token !== req.token;
+		});
+		await req.user.save();
+
+		res.respMessage.success = true;
+		res.respMessage.message = req.t("ProcessSuccess");
+		return res.status(200).send(res.respMessage);
+	} catch (e) {
+		res.respMessage = errorManipulator(e, req, res.respMessage);
+		return res.status(500).send(res.respMessage);
+	}
+};
+
+module.exports = { signUp, signIn, signOut };
