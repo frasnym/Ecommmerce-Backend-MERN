@@ -1,3 +1,4 @@
+const fs = require("fs");
 const slugify = require("slugify");
 
 const categoryModel = require("../models/categoryModel");
@@ -23,6 +24,7 @@ function populateCategories(categories, parentId = null) {
 			_id: cate._id,
 			name: cate.name,
 			slug: cate.slug,
+			imageUrl: cate.imageUrl,
 			children: populateCategories(categories, cate._id),
 		});
 	}
@@ -31,9 +33,15 @@ function populateCategories(categories, parentId = null) {
 }
 
 const createCategory = async (req, res) => {
+	let imageUrl;
+	if (req.file) {
+		imageUrl = req.file.filename;
+	}
+
 	const categoryObj = {
 		name: req.body.name,
 		slug: slugify(req.body.name), // slugify some string
+		imageUrl,
 	};
 
 	if (req.body.parentId) {
@@ -51,6 +59,12 @@ const createCategory = async (req, res) => {
 		res.respMessage.message = req.t("ProcessSuccess");
 		return res.status(201).send(res.respMessage);
 	} catch (e) {
+		if (req.file) {
+			fs.unlink(req.file.path, (err) => {
+				// delete the image
+				if (err) throw err;
+			});
+		}
 		res.respMessage = errorManipulator(e, req, res.respMessage);
 		return res.status(400).send(res.respMessage);
 	}

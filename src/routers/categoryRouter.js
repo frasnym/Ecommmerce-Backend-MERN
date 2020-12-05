@@ -1,6 +1,7 @@
 const express = require("express");
 
 const { authCheckAdmin, authCheck } = require("../middlewares/auth");
+const { upload, handleMulterErrors } = require("../middlewares/upload");
 const { rules, inputBodyValidator } = require("../middlewares/validation");
 const categoryController = require("../controllers/categoryController");
 
@@ -12,8 +13,10 @@ router
 	.post(
 		authCheck,
 		authCheckAdmin,
+		upload.single("imageUrl"),
 		[rules.createCategory, inputBodyValidator],
-		categoryController.createCategory
+		categoryController.createCategory,
+		handleMulterErrors
 	);
 
 module.exports = router;
