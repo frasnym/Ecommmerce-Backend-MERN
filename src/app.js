@@ -1,5 +1,6 @@
 const express = require("express");
 require("./db/mongoose");
+const cors = require("cors");
 
 const { i18next, i18nextMiddleware } = require("./utils/translation");
 const { setResponseTemplate } = require("./middlewares/api");
@@ -10,6 +11,7 @@ const productRouter = require("./routers/productRouter");
 const cartRouter = require("./routers/cartRouter");
 
 const app = express();
+app.use(cors()); // allow CORS, Access-Control-Allow-Origin
 app.use(express.json()); // body raw JSON
 app.use(express.static("uploads")); // expose upload image to public
 app.use(i18nextMiddleware.handle(i18next)); // we tell Express to use i18next's middleware
