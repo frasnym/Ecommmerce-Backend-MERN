@@ -11,6 +11,7 @@ const cartRouter = require("./routers/cartRouter");
 
 const app = express();
 app.use(express.json()); // body raw JSON
+app.use(express.static("uploads")); // expose upload image to public
 app.use(i18nextMiddleware.handle(i18next)); // we tell Express to use i18next's middleware
 app.use("/users/auth", setResponseTemplate, authRouter);
 app.use("/users", setResponseTemplate, userRouter);
