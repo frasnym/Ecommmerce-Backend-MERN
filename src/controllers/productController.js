@@ -47,7 +47,9 @@ const createProduct = async (req, res) => {
 
 const readProducts = async (req, res) => {
 	try {
-		const products = await productModel.find({});
+		const products = await productModel
+			.find({})
+			.populate({ path: "category", select: "_id name" });
 
 		res.respMessage.data = products;
 

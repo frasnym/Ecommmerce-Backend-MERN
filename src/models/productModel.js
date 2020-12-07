@@ -81,7 +81,7 @@ productSchema.methods = {
 			delete image.id;
 			delete image.url;
 		});
-
+		delete productObject.category.id;
 		delete productObject.id;
 		delete productObject.images.id;
 
