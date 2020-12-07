@@ -59,6 +59,36 @@ const productSchema = new mongoose.Schema(
 	}
 );
 
+/**
+ * Change Images URL to Full URL with BASE_URL
+ */
+productSchema
+	.path("images")
+	.schema.virtual("full_url")
+	.get(function () {
+		return `${process.env.BASE_URL}/${this.url}`;
+	});
+
+productSchema.methods = {
+	/**
+	 ** Hide credentials data on API response
+	 */
+	toJSON: function () {
+		const product = this;
+		const productObject = product.toObject({ virtuals: true });
+
+		productObject.images.map((image) => {
+			delete image.id;
+			delete image.url;
+		});
+
+		delete productObject.id;
+		delete productObject.images.id;
+
+		return productObject;
+	},
+};
+
 productSchema.post("save", function (error, doc, next) {
 	const mongoErr = mongo_errors(error);
 	if (mongoErr) {
