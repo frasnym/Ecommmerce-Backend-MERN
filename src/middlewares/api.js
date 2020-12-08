@@ -21,7 +21,6 @@ const setResponseTemplate = async (req, res, next) => {
  * @param {Object} respMessage : Response message template
  */
 const errorManipulator = (error, req, respMessage) => {
-	// console.log(error);
 	if (error.message.startsWith("ERRORMIDDLEWARE")) {
 		respMessage.message = error.message.replace("ERRORMIDDLEWARE.", "");
 		if (respMessage.message.startsWith("DUPLICATE")) {
@@ -42,7 +41,10 @@ const errorManipulator = (error, req, respMessage) => {
 		// }
 	}
 
-	process.env.NODE_ENV === "production" ? null : (respMessage.helper = error);
+	if (process.env.NODE_ENV !== "production") {
+		console.log(error);
+		respMessage.helper = error;
+	}
 
 	return respMessage;
 };
