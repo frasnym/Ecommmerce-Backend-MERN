@@ -74,7 +74,20 @@ const readProductsBySlug = async (req, res) => {
 
 		const products = await productModel.find({ category: category._id });
 
-		res.respMessage.data = products;
+		res.respMessage.data = {
+			products,
+			productsByPrice: {
+				under20m: products.filter(
+					(product) => product.price <= 20000000
+				),
+				under15m: products.filter(
+					(product) => product.price <= 15000000
+				),
+				under10m: products.filter(
+					(product) => product.price <= 10000000
+				),
+			},
+		};
 		res.respMessage.success = true;
 		res.respMessage.message = req.t("ProcessSuccess");
 		return res.status(200).send(res.respMessage);
