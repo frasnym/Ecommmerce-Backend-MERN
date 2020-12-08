@@ -19,4 +19,6 @@ router
 		handleMulterErrors
 	);
 
+router.route("/:slug").get(productController.readProductsBySlug);
+
 module.exports = router;

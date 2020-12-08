@@ -24,6 +24,7 @@ function populateCategories(categories, parentId = null) {
 			_id: cate._id,
 			name: cate.name,
 			slug: cate.slug,
+			parentId: cate.parentId,
 			imageUrl: cate.imageUrl,
 			children: populateCategories(categories, cate._id),
 		});

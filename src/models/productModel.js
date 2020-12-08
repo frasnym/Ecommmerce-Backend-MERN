@@ -56,6 +56,16 @@ const productSchema = new mongoose.Schema(
 	},
 	{
 		timestamps: true,
+		toObject: {
+			transform: function (doc, ret) {
+				delete ret._id;
+			},
+		},
+		// toJSON: {
+		// 	transform: function (doc, ret) {
+		// 		delete ret._id;
+		// 	},
+		// },
 	}
 );
 
@@ -78,12 +88,13 @@ productSchema.methods = {
 		const productObject = product.toObject({ virtuals: true });
 
 		productObject.images.map((image) => {
-			delete image.id;
+			delete image._id;
 			delete image.url;
 		});
-		delete productObject.category.id;
-		delete productObject.id;
-		delete productObject.images.id;
+
+		if (product.populated("category")) {
+			delete productObject.category._id;
+		}
 
 		return productObject;
 	},
